@@ -1,0 +1,163 @@
+/* =========================================================================
+ * Gra karciana – Recykling — stylesheet (stable v1.0)
+ * ========================================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#gameContainer {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 760px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+#description {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#description ul {
+    padding-left: 20px;
+}
+
+/* ------------------------------- Buttons -------------------------------- */
+
+button {
+    background-color: #2e7d32;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 6px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #1b5e20;
+}
+
+button:disabled {
+    background-color: #9e9e9e;
+    cursor: default;
+}
+
+/* --------------------------- Status / inputs ---------------------------- */
+
+#setupSection input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+#status {
+    display: flex;
+    justify-content: space-around;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* -------------------------------- Cards --------------------------------- */
+
+.card {
+    width: 100%;
+    height: 110px;
+    border: 1px solid #000;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+}
+
+.easy   { background-color: #b0e57c; }
+.medium { background-color: #f0d264; }
+.hard   { background-color: #f58a42; }
+
+.selected {
+    outline: 3px solid #d32f2f;
+    outline-offset: -3px;
+}
+
+/* ----------------------------- Hand layout ------------------------------ */
+
+#hand {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* --------------------- Recycling bin: 4-col scrollable ------------------ */
+
+#binArea {
+    border: 2px dashed #2e7d32;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 20px;
+    background: #f1f8e9;
+}
+
+#binArea h2 {
+    margin-top: 0;
+}
+
+#bin {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+/* ------------------------------ Messages -------------------------------- */
+
+#messageContainer {
+    margin: 10px 0;
+    min-height: 24px;
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* ---------------------------- High scores ------------------------------- */
+
+#highScores {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#scoreList {
+    padding-left: 24px;
+}
+
+#scoreList li {
+    padding: 3px 0;
+}

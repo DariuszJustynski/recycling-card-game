@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra karciana – Recykling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <h1>Gra karciana – Recykling</h1>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Opis i zasady                                                     -->
+        <!-- ---------------------------------------------------------------- -->
+        <div id="description">
+            <h2>Opis gry</h2>
+            <p>
+                Gra karciana inspirowana Hanafudą, ucząca segregacji odpadów.
+                Talia liczy 48 kart w 12 kategoriach odpadów (po 4 karty).
+                Dobieraj karty do ręki, przenoś je do kosza na recykling
+                i usuwaj pary takich samych odpadów, zdobywając punkty i czas.
+            </p>
+            <h2>Zasady</h2>
+            <ul>
+                <li>Usunięcie pary takich samych kart: <strong>+10 punktów i +5 sekund</strong>.</li>
+                <li>Bonus za dobieranie tych samych odpadów: jedna po drugiej +100,
+                    z jedną przerwą +70, 1:3 +50, 1:4 +40, 1:5 +10.</li>
+                <li>Przeoczenie pary (trzecia taka sama karta w koszu): <strong>-300 punktów</strong>.</li>
+                <li>Odpady nuklearne, niebezpieczne i zmieszane odejmują punkty i czas
+                    w momencie wrzucenia do kosza.</li>
+            </ul>
+        </div>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Ekran startowy                                                    -->
+        <!-- ---------------------------------------------------------------- -->
+        <div id="setupSection">
+            <label for="playerName">Wprowadź swoje imię:</label>
+            <input type="text" id="playerName" placeholder="Twoje imię" maxlength="20">
+            <button id="startGame">Start</button>
+        </div>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Ekran gry                                                         -->
+        <!-- ---------------------------------------------------------------- -->
+        <div id="gameSection" style="display: none;">
+            <div id="status">
+                <div id="points">Punkty: 0</div>
+                <div id="timer">Czas: 60s</div>
+            </div>
+            <button id="drawCard">Dobierz kartę</button>
+
+            <div id="handArea">
+                <h2>Twoja ręka</h2>
+                <div id="hand"></div>
+            </div>
+
+            <div id="binArea">
+                <h2>Kosz na recykling</h2>
+                <div id="bin"></div>
+            </div>
+
+            <div id="messageContainer"></div>
+        </div>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Ekran końcowy                                                     -->
+        <!-- ---------------------------------------------------------------- -->
+        <div id="endSection" style="display: none;">
+            <h2>Koniec gry</h2>
+            <p id="finalScore"></p>
+            <button id="saveScoreBtn">Zapisz wynik</button>
+            <button id="playAgain">Zagraj ponownie</button>
+        </div>
+
+        <!-- ---------------------------------------------------------------- -->
+        <!-- Najlepsze wyniki                                                  -->
+        <!-- ---------------------------------------------------------------- -->
+        <div id="highScores">
+            <h2>Najlepsze wyniki</h2>
+            <ol id="scoreList"></ol>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

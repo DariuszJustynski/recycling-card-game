@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra karciana - Recykling</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <h1>Gra karciana - Recykling</h1>
+        <div id="description">
+            <h2>Opis gry</h2>
+            <p>Witaj w grze karcianej o recyklingu! Twoim zadaniem jest dobieranie kart z talii i odkładanie ich do kosza na recykling. Uważaj na odpady niebezpieczne, nuklearne i zmieszane, które mogą zaszkodzić twoim punktom i czasowi gry.</p>
+            <h2>Zasady gry</h2>
+            <ul>
+                <li>Za każdą parę takich samych kart usuniętych z kosza otrzymujesz dodatkowe punkty i czas:</li>
+                <ul>
+                    <li>100 punktów za dwie takie same karty jedna po drugiej.</li>
+                    <li>70 punktów za dwie takie same karty co drugi raz.</li>
+                    <li>50 punktów za dwie takie same karty w szeregu 1:3.</li>
+                    <li>40 punktów za dwie takie same karty w szeregu 1:4.</li>
+                    <li>10 punktów za dwie takie same karty w szeregu 1:5.</li>
+                </ul>
+                <li>Jeżeli przeoczysz możliwość usunięcia pary odpadów z kosza i dobierzesz trzecią kartę tego samego rodzaju, tracisz 300 punktów.</li>
+                <li>Za każdą kartę odpadu nuklearnego w koszu tracisz punkty zgodnie z ciągiem geometrycznym (5, 10, 20, 40, ...).</li>
+                <li>Za każdą kartę odpadu niebezpiecznego w koszu tracisz punkty zgodnie z ciągiem geometrycznym (2, 4, 8, 16, ...).</li>
+                <li>Za każdą kartę odpadu zmieszanego w koszu tracisz punkty zgodnie z ciągiem geometrycznym (1, 2, 4, 8, ...).</li>
+                <li>Każda para kart usunięta z kosza dodaje 5 sekund do twojego czasu gry.</li>
+                <li>Odpady nuklearne odejmują 10 sekund od czasu gry za każdą rundę.</li>
+                <li>Odpady niebezpieczne odejmują 5 sekund od czasu gry za każdą rundę.</li>
+                <li>Odpady zmieszane odejmują 1 sekundę od czasu gry za każdą rundę.</li>
+            </ul>
+        </div>
+        <button id="drawCard">Dobierz kartę</button>
+        <div id="points">Punkty: 0</div>
+        <div id="timer">Czas: 60s</div>
+        <div id="hand"></div>
+        <div id="bin"></div>
+        <div id="messageContainer"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

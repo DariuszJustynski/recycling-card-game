@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gra Karciana: Zarządzanie Odpadami</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game">
+        <h1>Gra Karciana: Zarządzanie Odpadami</h1>
+        <div id="description">
+            <p>
+                Gra karciana oparta na zasadach Hanafuda, której celem jest edukacja na temat zarządzania odpadami.
+                Talia składa się z 48 kart, reprezentujących różne rodzaje odpadów o różnym poziomie trudności w recyklingu,
+                od najłatwiejszych do najtrudniejszych. Zadaniem graczy jest pociągnąć karty i odpowiednio je przetworzyć,
+                unikając składowania odpadów.
+            </p>
+            <p>
+                <strong>Zasady Gry:</strong><br>
+                1. Pociągnij kartę z talii, klikając przycisk "Pociągnij Kartę".<br>
+                2. Kliknij na kartę w swojej ręce, aby przenieść ją do kosza na recykling.<br>
+                3. Celem gry jest pozbycie się wszystkich kart poprzez recykling lub utylizację.<br>
+                4. Kliknij na dwie takie same karty w koszu na recykling, aby je usunąć.<br>
+            </p>
+        </div>
+        <div id="deck">
+            <button id="drawCard">Pociągnij Kartę</button>
+            <div id="cardContainer"></div>
+        </div>
+        <div id="playerHand">
+            <h2>Twoje Karty</h2>
+            <div id="hand"></div>
+        </div>
+        <div id="recycleBin">
+            <h2>Kosz na Recykling</h2>
+            <div id="bin"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
