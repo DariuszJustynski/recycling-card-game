@@ -1,0 +1,322 @@
+/* =========================================================================
+ * Recycling Waste Fall — v0.2.0-experimental stylesheet
+ * Dark ecological / industrial look.
+ * ========================================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-deep: #0d1512;
+    --bg-panel: #16221c;
+    --bg-well: #0a0f0d;
+    --line: #22352c;
+    --text: #d8e6dd;
+    --accent: #4caf50;
+    --accent-dim: #2e7d32;
+    --danger: #ef5350;
+    --cell: 34px;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(ellipse at 20% 0%, #16261e 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 100%, #101d2a 0%, transparent 55%),
+        var(--bg-deep);
+    color: var(--text);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#gameContainer {
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 6px;
+    color: var(--accent);
+    letter-spacing: 1px;
+    text-shadow: 0 0 14px rgba(76, 175, 80, 0.35);
+}
+
+.tagline {
+    font-size: 14px;
+    color: #a8bfb1;
+    margin: 0 0 16px;
+}
+
+.badge {
+    display: inline-block;
+    background: #7b3fbf;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* --------------------------------- HUD ---------------------------------- */
+
+#hud {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#hud > div {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 18px;
+    min-width: 110px;
+}
+
+#timer { color: #ffd54f; }
+#level { color: #4fc3f7; }
+#score { color: var(--accent); }
+
+/* --------------------------------- Well --------------------------------- */
+
+#wellWrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+}
+
+.well {
+    position: relative;
+    width: calc(var(--cols, 12) * var(--cell));
+    height: calc(var(--rows, 16) * var(--cell));
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        var(--bg-well);
+    background-size: var(--cell) var(--cell), var(--cell) var(--cell), auto;
+    border: 3px solid var(--accent-dim);
+    border-radius: 6px;
+    box-shadow: 0 0 22px rgba(46, 125, 50, 0.3), inset 0 0 30px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+
+/* Danger zone marker at the top of the well */
+.well::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(2 * var(--cell));
+    border-top: 2px dashed rgba(239, 83, 80, 0.45);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.well.game-over {
+    border-color: var(--danger);
+    box-shadow: 0 0 26px rgba(239, 83, 80, 0.45), inset 0 0 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ----------------------------- Waste blocks ----------------------------- */
+
+.waste {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.55);
+    box-shadow: inset 0 2px 3px rgba(255, 255, 255, 0.25),
+                inset 0 -3px 4px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    user-select: none;
+    z-index: 2;
+    transition: outline-color 0.1s;
+}
+
+.waste-label {
+    font-size: 9px;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.75);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+    pointer-events: none;
+    overflow: hidden;
+    padding: 1px;
+}
+
+/* Shape sizes (grid cells) */
+.shape-1x1 { width: var(--cell); height: var(--cell); }
+.shape-2x1 { width: calc(2 * var(--cell)); height: var(--cell); }
+.shape-1x2 { width: var(--cell); height: calc(2 * var(--cell)); }
+.shape-2x2 { width: calc(2 * var(--cell)); height: calc(2 * var(--cell)); }
+.shape-3x1 { width: calc(3 * var(--cell)); height: var(--cell); }
+
+/* Type visuals — each waste type is visually distinct */
+.w-paper       { background: linear-gradient(135deg, #e8f5e9, #a5d6a7); }
+.w-glass       { background: linear-gradient(135deg, #4dd0e1, #1976d2); clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); border: none; }
+.w-plastic     { background: linear-gradient(135deg, #ffe082, #fb8c00); border-radius: 12px; }
+.w-metal       { background: linear-gradient(135deg, #cfd8dc, #78909c); }
+.w-bio         { background: linear-gradient(135deg, #8d6e63, #558b2f); }
+.w-electronics { background: linear-gradient(135deg, #7e57c2, #303f9f); }
+.w-nuclear     { background: repeating-linear-gradient(45deg, #212121 0 8px, #fdd835 8px 16px); }
+.w-nuclear .waste-label { color: #fff; text-shadow: 0 1px 2px #000; }
+.w-hazardous   { background: linear-gradient(135deg, #ef5350, #e65100); }
+.w-mixed       { background: linear-gradient(135deg, #616161, #37474f); }
+.w-mixed .waste-label { color: #ddd; text-shadow: none; }
+.w-wood        { background: repeating-linear-gradient(90deg, #a1887f 0 10px, #795548 10px 20px); }
+.w-textiles    { background: linear-gradient(135deg, #f48fb1, #9575cd); }
+.w-ceramics    { background: linear-gradient(135deg, #efebe9, #9e9e9e); }
+
+/* Selection + falling highlights */
+.waste.selected {
+    outline: 3px solid #fff176;
+    outline-offset: 1px;
+    z-index: 3;
+    box-shadow: 0 0 12px rgba(255, 241, 118, 0.8);
+}
+
+.waste.falling {
+    filter: brightness(1.15);
+}
+
+/* Diamond glass still needs a visible selection ring despite clip-path */
+.w-glass.selected {
+    filter: brightness(1.5) drop-shadow(0 0 6px #fff176);
+}
+
+/* ---------------------------- Panels / messages ------------------------- */
+
+#selectedPanel {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    min-height: 38px;
+}
+
+.chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #111;
+}
+
+#messageContainer {
+    min-height: 26px;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.msg-good { color: var(--accent); }
+.msg-bad  { color: var(--danger); }
+
+/* ------------------------------- Controls ------------------------------- */
+
+button {
+    background: var(--accent-dim);
+    color: #fff;
+    border: 1px solid var(--accent);
+    padding: 10px 28px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+    background: var(--accent);
+    box-shadow: 0 0 14px rgba(76, 175, 80, 0.5);
+}
+
+/* ------------------------------ Save score ------------------------------ */
+
+#saveRow {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+#saveRow input {
+    padding: 7px 10px;
+    font-size: 14px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--bg-well);
+    color: var(--text);
+    margin: 0 8px;
+}
+
+#saveRow button {
+    padding: 7px 16px;
+    font-size: 14px;
+}
+
+button:disabled {
+    background: #455a50;
+    border-color: #455a50;
+    cursor: default;
+    box-shadow: none;
+}
+
+/* ----------------------------- High scores ------------------------------ */
+
+#highScores {
+    margin-top: 20px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: left;
+}
+
+#highScores h2 {
+    margin: 4px 0 8px;
+    font-size: 16px;
+    color: var(--accent);
+}
+
+#scoreList {
+    margin: 0 0 8px;
+    padding-left: 26px;
+    font-size: 14px;
+}
+
+#scoreList li { padding: 2px 0; }
+
+footer {
+    margin-top: 16px;
+    font-size: 12px;
+    color: #7d948a;
+}
+
+footer a { color: var(--accent); }
+
+/* ------------------------------ Responsive ------------------------------ */
+
+@media (max-width: 520px) {
+    :root { --cell: 24px; }
+    #hud { font-size: 15px; gap: 8px; }
+    #hud > div { min-width: 84px; padding: 6px 10px; }
+    .waste-label { font-size: 7px; }
+}

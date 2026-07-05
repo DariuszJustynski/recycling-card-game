@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Waste Fall — Experimental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <header>
+            <h1>♻ Recycling Waste Fall</h1>
+            <p class="tagline">
+                <span class="badge">EXPERIMENTAL v0.2.0</span>
+                Waste tumbles into the well — click <strong>two blocks of the same
+                type</strong> to recycle them before the well overflows!
+            </p>
+        </header>
+
+        <div id="hud">
+            <div id="score">Score: 0</div>
+            <div id="timer">00:00</div>
+            <div id="level">Level 1</div>
+        </div>
+
+        <div id="wellWrap">
+            <div id="well" class="well"></div>
+        </div>
+
+        <div id="selectedPanel">Selected: <em>none — click two matching waste blocks</em></div>
+        <div id="messageContainer"></div>
+
+        <div id="controls">
+            <button id="startBtn">Start</button>
+        </div>
+
+        <div id="saveRow" style="display: none;">
+            <span id="finalScoreText"></span>
+            <input type="text" id="saveName" placeholder="Your name" maxlength="20">
+            <button id="saveBtn">Save score</button>
+        </div>
+
+        <section id="highScores">
+            <h2>High Scores</h2>
+            <ol id="scoreList"></ol>
+        </section>
+
+        <footer>
+            <p>
+                Experimental branch of the
+                <a href="https://github.com/DariuszJustynski/recycling-card-game">Recycling Card Game</a>
+                (the stable card game is unchanged). Vanilla JS — no frameworks, no backend.
+            </p>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
