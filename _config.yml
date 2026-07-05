@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll) configuration.
+#
+# The experimental falling-waste version is kept in the repository as source
+# code, but it is EXCLUDED from the published GitHub Pages site.
+# Only the stable card game is served publicly.
+exclude:
+  - recycling-waste-fall-v0.2.0-experimental
